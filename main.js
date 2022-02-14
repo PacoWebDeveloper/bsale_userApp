@@ -154,7 +154,7 @@ window.addEventListener('load', () => {
       /* const URL = 'http://localhost:3700/api/getAllProducts'; */ //URL LOCAL
   
       const response = await fetch(URL);
-      const data = await response.json();
+      const data = response.json();
   
       return data;
     }
