@@ -90,6 +90,18 @@ body {
 ion-icon[name="cart"] {
     cursor: pointer;
 }
+
+.options {
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.category {
+    display: block;
+    margin: 5px;
+    margin-left: 30px;
+}
 .showAllProductsButton {
     width: 200px;
     border: 1px solid #aaa;
@@ -98,9 +110,10 @@ ion-icon[name="cart"] {
     padding: 3px;
     font-size: 12px;
     text-align: center;
-    position: absolute;
+    /* position: absolute;
     top: 100px;
-    left: 15px;
+    left: 15px; */
+    display: block;
     cursor: pointer;
 }
 .showAllProductsButton:active {

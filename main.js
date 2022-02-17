@@ -8,6 +8,7 @@ window.addEventListener('load', () => {
     //================> Products container varibles
   
     const showAllProductsButton = document.querySelector('.showAllProductsButton');
+    const categorySelect = document.querySelector('#categorySelect');
     const productContainer = document.querySelector('.products-container');
     const productCard = document.querySelectorAll('.product-card');
     const imageProduct = document.querySelectorAll('.image');
@@ -35,6 +36,7 @@ window.addEventListener('load', () => {
   
     // ================> Events
     showAllProductsButton.addEventListener('click', () => {
+      categorySelect.value = 0;
       response = apiRequetsAllProducts();//Call all products to be shown in display
       response.then((res) => { 
         allProducts = res.results;
@@ -45,11 +47,22 @@ window.addEventListener('load', () => {
         console.error(err);
       })
     })
+
+    categorySelect.addEventListener('change', () => {
+      const category = categorySelect.value;
+      response = apiRequetsByCategory(category);
+      response.then((res) => {
+        allProducts = res.results;
+        setProductsInItems(allProducts, currentPage);
+        showPanels(allProducts);
+      })
+    })
   
     searchBar.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         const text = searchBar.value.trim();
         if (text != '') {
+          categorySelect.value = 0;
           currentPage = 1;
           pageNumber.placeholder = currentPage;
   
@@ -66,6 +79,7 @@ window.addEventListener('load', () => {
     })
   
     submitButton.addEventListener('click', () => {
+      categorySelect.value = 0;
       const text = searchBar.value.trim();
       if (text != '') {
         currentPage = 1;
@@ -168,4 +182,14 @@ window.addEventListener('load', () => {
       
       return data;
     }  
+    //Call products by category
+    async function apiRequetsByCategory(textSearch) {
+      const URL = `https://bsaletestapi.herokuapp.com/api/getProductsByCategory?category=${textSearch}`; //URL HEROKU
+      /* const URL = `http://localhost:3700/api/getProductsByCategory?category=${textSearch}`; */ // URL LOCAL
+  
+      const response = await fetch(URL);
+      const data = await response.json();
+      
+      return data;
+    } 
   })
