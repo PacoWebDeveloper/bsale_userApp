@@ -50,7 +50,10 @@ window.addEventListener('load', () => {
 
     categorySelect.addEventListener('change', () => {
       const category = categorySelect.value;
-      response = apiRequetsByCategory(category);
+      if (category != 0 )
+        response = apiRequetsByCategory(category);
+      else
+        response = apiRequetsAllProducts();
       response.then((res) => {
         allProducts = res.results;
         setProductsInItems(allProducts, currentPage);
