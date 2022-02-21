@@ -50,6 +50,7 @@ window.addEventListener('load', () => {
 
     categorySelect.addEventListener('change', () => {
       const category = categorySelect.value;
+      console.log(category);
       if (category != 0 )
         response = apiRequetsByCategory(category);
       else
@@ -168,7 +169,7 @@ window.addEventListener('load', () => {
     //Call all products
     async function apiRequetsAllProducts(/* limit */) {
       const URL = 'https://bsaletestapi.herokuapp.com/api/getAllProducts' //URL HEROKU
-      /* const URL = 'http://localhost:3700/api/getAllProducts'; */ //URL LOCAL
+      //const URL = 'http://localhost:3700/api/getAllProducts'; //URL LOCAL
   
       const response = await fetch(URL);
       const data = response.json();
@@ -178,7 +179,7 @@ window.addEventListener('load', () => {
     //Call products by name
     async function apiRequets(textSearch) {
       const URL = `https://bsaletestapi.herokuapp.com/api/getProductsByName?name=${textSearch}`; //URL HEROKU
-      /* const URL = `http://localhost:3700/api/getProductsByName?name=${textSearch}`; */ // URL LOCAL
+      //const URL = `http://localhost:3700/api/getProductsByName?name=${textSearch}`; // URL LOCAL
   
       const response = await fetch(URL);
       const data = await response.json();
@@ -188,7 +189,7 @@ window.addEventListener('load', () => {
     //Call products by category
     async function apiRequetsByCategory(textSearch) {
       const URL = `https://bsaletestapi.herokuapp.com/api/getProductsByCategory?category=${textSearch}`; //URL HEROKU
-      /* const URL = `http://localhost:3700/api/getProductsByCategory?category=${textSearch}`; */ // URL LOCAL
+      //const URL = `http://localhost:3700/api/getProductsByCategory?category=${textSearch}`; // URL LOCAL
   
       const response = await fetch(URL);
       const data = await response.json();
